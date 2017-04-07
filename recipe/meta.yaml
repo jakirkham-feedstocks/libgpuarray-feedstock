@@ -1,4 +1,4 @@
-{% set version = "0.6.2" %}
+{% set version = "0.6.3" %}
 
 package:
   name: libgpuarray
@@ -7,7 +7,7 @@ package:
 source:
   fn: libgpuarray-{{ version }}.tar.gz
   url: https://github.com/Theano/libgpuarray/archive/v{{ version }}.tar.gz
-  sha256: 04756c6270c0ce3b91a9bf01be38c4fc743f5356acc18d9f807198021677bcc8
+  sha256: fdc6fa5be097aa8a31793bdcf9fefab80d603faa2a966541983d75d4b5fc57bb
 
 build:
   number: 0
@@ -32,7 +32,6 @@ requirements:
     - numpy x.x
     - mako
     - six
-    - nose  # This will be fixed in 0.6.3
 
 test:
   commands:
