@@ -26,12 +26,14 @@ requirements:
     - numpy x.x
     - mako
     - setuptools
+    - clblast
 
   run:
     - python
     - numpy x.x
     - mako
     - six
+    - clblast
 
 test:
   commands:
