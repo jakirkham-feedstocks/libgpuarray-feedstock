@@ -1,4 +1,4 @@
-{% set version = "0.6.5" %}
+{% set version = "0.6.8" %}
 
 package:
   name: libgpuarray
@@ -7,40 +7,30 @@ package:
 source:
   fn: libgpuarray-{{ version }}.tar.gz
   url: https://github.com/Theano/libgpuarray/archive/v{{ version }}.tar.gz
-  sha256: 29f44957a826083954d01de7009083fec4acb904bc51b48d3c667ef52c1f2c0b
+  sha256: a06744e02638ec1e579f7339be3e6c688d0e92b4ee15a9d7dec6bd43601d2554
 
 build:
   number: 0
+  skip: true  # [win and py35]
   features:
-    - vc9  # [win and py27]
-    - vc10  # [win and py34]
-    - vc14  # [win and py35]
-    - vc14  # [win and py36]
+    - vc9     # [win and py27]
+    - vc10    # [win and py34]
+    - vc14    # [win and py35]
+    - vc14    # [win and py36]
 
 requirements:
   build:
     - toolchain
+    - python     # [win]
     - cmake
-    - python
-    - cython >=0.25
-    - numpy x.x
-    - mako
-    - setuptools
-
-  run:
-    - python
-    - numpy x.x
-    - mako
-    - six
 
 test:
+  requires:
+    - python {{ environ['PY_VER'] + '*' }}                      # [win]
   commands:
-    - test -f ${PREFIX}/lib/libgpuarray.dylib  # [osx]
-    - test -f ${PREFIX}/lib/libgpuarray.so  # [linux]
+    - test -f ${PREFIX}/lib/libgpuarray.dylib                   # [osx]
+    - test -f ${PREFIX}/lib/libgpuarray.so                      # [linux]
     - if not exist %PREFIX%\\Library\\lib\\gpuarray.lib exit 1  # [win]
-  imports:
-    - pygpu
-    - pygpu.gpuarray
 
 about:
   home: http://github.com/Theano/libgpuarray
